@@ -15,7 +15,7 @@ import NotFound from './routes/NotFound'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-//import store from './redux/store'
+import store from './redux/store'
 
 const queryClient = new QueryClient();
 
@@ -34,7 +34,7 @@ const StyleProvider: React.FC<{ children: React.ReactNode[] | React.ReactNode }>
 const ProviderWrapper: React.FC<{ children: React.ReactNode[] | React.ReactNode }> = ({ children } : { children: React.ReactNode[] | React.ReactNode }) => {
     return (
         <React.StrictMode>
-
+            <Provider store={store}>
                 <QueryClientProvider client={queryClient}>
                     <BrowserRouter>
                         <StyleProvider>
@@ -44,7 +44,7 @@ const ProviderWrapper: React.FC<{ children: React.ReactNode[] | React.ReactNode 
                         </StyleProvider>
                     </BrowserRouter>
                 </QueryClientProvider>
-
+            </Provider>
         </React.StrictMode>
     )
 }

@@ -1,11 +1,11 @@
 import classname from 'classnames'
 import React from 'react'
 
-import { WordListPropsInterface } from '../types/props.types'
+import { SearchWordListPropsInterface } from '../types/props.types'
 
 import Word from './Word'
 
-const WordsList: React.FC<WordListPropsInterface> = ({ className, wordsSearchData }: WordListPropsInterface) => {
+const SearchWordsList: React.FC<SearchWordListPropsInterface> = ({ className, wordsSearchData }: SearchWordListPropsInterface) => {
 
   if (wordsSearchData === null) 
     return (<div className="w-full text-center mt-2">Введите поисковый запрос</div>)
@@ -22,4 +22,4 @@ const WordsList: React.FC<WordListPropsInterface> = ({ className, wordsSearchDat
   );
 }
 
-export default WordsList
+export default SearchWordsList

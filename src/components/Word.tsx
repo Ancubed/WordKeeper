@@ -1,38 +1,39 @@
 import classname from 'classnames'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { WordPropsInterface } from '../types/props.types'
+import type { StoreState } from '../redux/store'
 
 import Star from '../components/Star'
 import WordDefenition from '../components/WordDefenition'
 
 import { fetchOneWordData } from '../utils/data'
-import { isWordContains, addWord, removeWord } from '../utils/storage'
+import { addWord, removeWord } from '../utils/storage'
+import { add, remove } from '../redux/wordsSlice'
 
-const Word: React.FC<WordPropsInterface> = ({ className, word, storagedWordSearchData }: WordPropsInterface) => {
+const Word: React.FC<WordPropsInterface> = ({ className, word, propsWordSearchData }: WordPropsInterface) => {
+  const dispatch = useDispatch()
+  const isWordInFavourites = useSelector((state: StoreState) => state.search.words.findIndex(wrd => wrd.word === word)) !== -1
   const [isWordClicked, setIsWordClicked] = useState(false)
-  const [isInFavourites, setIsInFavourites] = useState(isWordContains(word))
 
-  const isWordStoraged = storagedWordSearchData !== undefined
+  // Если слово передано ка кпропс, то не нужно делать запрос
+  const isWordStoraged = propsWordSearchData !== undefined
   const queryResult = useQuery(word, () => fetchOneWordData({ word }), { enabled: !isWordStoraged })
-  let wordData = isWordStoraged ? storagedWordSearchData : queryResult.data
+  let wordData = isWordStoraged ? propsWordSearchData : queryResult.data
 
   const handleWordClick = () => setIsWordClicked(!isWordClicked)
 
   const addRemoveFavourite = () => {
-    if (isInFavourites) {
+    if (isWordInFavourites) {
+      dispatch(remove(word))
       removeWord(word)
-      if (!isWordContains(word)) {
-        setIsInFavourites(false);
-      }
     } else if (!wordData || Object.keys(wordData).length === 0) {
       alert('Not load yet')
-    } else if (!isWordContains(word)) {
+    } else if (!isWordInFavourites) {
+      dispatch(add(wordData))
       addWord(wordData)
-      if (isWordContains(word)) {
-        setIsInFavourites(true);
-      }
     }
   }
 
@@ -64,7 +65,7 @@ const Word: React.FC<WordPropsInterface> = ({ className, word, storagedWordSearc
             </div>
           }
         </div>
-        <Star isFilled={isInFavourites} className="cursor-pointer" onClick={addRemoveFavourite}/>
+        <Star isFilled={isWordInFavourites} className="cursor-pointer" onClick={addRemoveFavourite}/>
     </div>
   );
 }

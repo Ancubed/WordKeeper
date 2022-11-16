@@ -24,15 +24,19 @@ export interface InputProps extends DefaultPropsInterface {
     formInputHook: { value: DefaultHookInitValType, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }
 }
 
-export interface WordListPropsInterface extends DefaultPropsInterface {
+export interface SearchWordListPropsInterface extends DefaultPropsInterface {
     className?: string
     wordsSearchData: FetchWordsDataResultInterface | null
+}
+
+export interface FavouritesWordListPropsInterface extends DefaultPropsInterface {
+    wordsSearchData: FetchOneWordDataResultInterface[]
 }
 
 export interface WordPropsInterface extends DefaultPropsInterface {
     key: React.Key,
     word: string,
-    storagedWordSearchData?: FetchOneWordDataResultInterface
+    propsWordSearchData?: FetchOneWordDataResultInterface
 }
 
 export interface WordDefenitionPropsInterface extends DefaultPropsInterface {

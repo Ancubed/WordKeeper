@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-// import authSlice from './authSlice'
+import wordsSlice from './wordsSlice'
 
 const store = configureStore({ 
     reducer: {
-        auth: authSlice
+        search: wordsSlice
     } 
 })
 

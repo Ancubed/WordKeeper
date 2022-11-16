@@ -1,11 +1,11 @@
 import classname from 'classnames'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { DefaultPropsInterface } from '../types/props.types'
 import { FetchWordsDataResultInterface } from '../types/utils.types'
 
 import SearchRow from '../components/SearchRow'
-import WordsList from '../components/WordsList'
+import SearchWordsList from '../components/SearchWordsList'
 
 const Home: React.FC<DefaultPropsInterface> = ({ className }: DefaultPropsInterface) => {
   const [wordsSearchData, setWordsSearchData] = useState<FetchWordsDataResultInterface | null>(null)
@@ -19,7 +19,7 @@ const Home: React.FC<DefaultPropsInterface> = ({ className }: DefaultPropsInterf
       <h1 className="text-lg">Search Words</h1>
       <div className="mt-4">
         <SearchRow onLoad={onLoad}/>
-        <WordsList wordsSearchData={wordsSearchData}/>
+        <SearchWordsList wordsSearchData={wordsSearchData}/>
       </div>
     </div>
   )

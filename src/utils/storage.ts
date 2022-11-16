@@ -26,7 +26,8 @@ export const addWord = (word: FetchOneWordDataResultInterface) => {
 export const removeWord = (word: string) => {
     try {
         let words = getWords()
-        words = words.filter(wrd => wrd.word !== word);
+        words = words.filter(wrd => wrd.word !== word)
+        console.log(words)
         localStorage.setItem('words', JSON.stringify(words))
     } catch (err) {
         handleError(err)
