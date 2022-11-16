@@ -13,7 +13,8 @@ export interface StarPropsInterface extends DefaultPropsInterface {
 }
 
 export interface SearchRowPropsInterface extends DefaultPropsInterface {
-    onLoad: any
+    onLoad: any,
+    localSearchCallback?: (filter: PartOfSpeechType | null, text: string) => void
 }
 
 export interface InputProps extends DefaultPropsInterface {

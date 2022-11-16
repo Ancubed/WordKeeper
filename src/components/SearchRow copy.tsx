@@ -14,7 +14,7 @@ import { fetchWordsData } from '../utils/data'
 
 import { ReactComponent as SearchIcon } from '../assets/search.svg'
 
-const SearchRow: React.FC<SearchRowPropsInterface> = ({ className, onLoad, localSearchCallback }: SearchRowPropsInterface) => {
+const SearchRow: React.FC<SearchRowPropsInterface> = ({ className, onLoad }: SearchRowPropsInterface) => {
   const serachInputHook = useFormInput('');
   const [filter, setFilter] = useState<PartOfSpeechType | null>(null);
 
@@ -24,8 +24,6 @@ const SearchRow: React.FC<SearchRowPropsInterface> = ({ className, onLoad, local
   }
 
   const loadWords = async () => {
-    if (localSearchCallback) return localSearchCallback(filter, serachInputHook.value)
-
     if (serachInputHook.value && serachInputHook.value != '') {
       let params: FetchWordsDataParamsInterface = { 
         pattern: serachInputHook.value 

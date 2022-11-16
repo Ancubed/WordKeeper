@@ -2,6 +2,8 @@ import * as React from 'react'
 
 export type PartOfSpeechType = 'noun' | 'adjective' | 'verb'
 
+export type SortType = "filter" | "alphabet"
+
 export interface FetchWordsDataParamsInterface {
     pattern: string,
     limit?: number
