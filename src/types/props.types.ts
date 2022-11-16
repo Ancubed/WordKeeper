@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { DefaultHookInitValType } from './hooks.types'
-import { FetchWordsDataResultInterface, PartOfSpeechType } from './utils.types'
+import { FetchWordsDataResultInterface, FetchOneWordDataResultInterface, PartOfSpeechType } from './utils.types'
 
 export interface DefaultPropsInterface {
     className?: string
@@ -31,7 +31,8 @@ export interface WordListPropsInterface extends DefaultPropsInterface {
 
 export interface WordPropsInterface extends DefaultPropsInterface {
     key: React.Key,
-    word: string
+    word: string,
+    storagedWordSearchData?: FetchOneWordDataResultInterface
 }
 
 export interface WordDefenitionPropsInterface extends DefaultPropsInterface {
