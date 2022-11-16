@@ -8,7 +8,8 @@ export interface DefaultPropsInterface {
 }
 
 export interface StarPropsInterface extends DefaultPropsInterface {
-    isFilled: boolean
+    isFilled: boolean,
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void
 }
 
 export interface SearchRowPropsInterface extends DefaultPropsInterface {

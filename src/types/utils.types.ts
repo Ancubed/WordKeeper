@@ -20,9 +20,14 @@ export interface FetchOneWordDataParamsInterface {
 export interface OneWordDataResult {  
     definition: string,
     partOfSpeech: string,
-    synonyms: string[]
-    typeOf: string[]
-    derivation: string[]
+    synonyms?: string[],
+    typeOf?: string[],
+    derivation?: string[],
+    instanceOf?: string[],
+    similarTo?: string[],
+    hasTypes?: string[],
+    examples?: string[],
+    cause?: string[]
 }
 
 export interface OneWordDataSyllables {  
@@ -31,11 +36,13 @@ export interface OneWordDataSyllables {
 }
 
 export interface OneWordDataPronunciation {  
-    all: string
+    all?: string
 }
 
 export interface FetchOneWordDataResultInterface {
-    results: OneWordDataResult[],
-    syllables: OneWordDataSyllables,
-    pronunciation: OneWordDataPronunciation
+    word: string,
+    results?: OneWordDataResult[],
+    syllables?: OneWordDataSyllables,
+    pronunciation?: OneWordDataPronunciation,
+    frequency?: number
 }
