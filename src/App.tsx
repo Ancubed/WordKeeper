@@ -19,7 +19,7 @@ import Footer from './components/Footer'
 
 const queryClient = new QueryClient();
 
-const StyleWrapper: React.FC<{ children: React.ReactNode[] | React.ReactNode }> = ({ children } : { children: React.ReactNode[] | React.ReactNode }) => {
+const StyleProvider: React.FC<{ children: React.ReactNode[] | React.ReactNode }> = ({ children } : { children: React.ReactNode[] | React.ReactNode }) => {
     return (
         <>
             <Header className='font-sans text-lg px-12 m-1'/>
@@ -37,11 +37,11 @@ const ProviderWrapper: React.FC<{ children: React.ReactNode[] | React.ReactNode 
 
                 <QueryClientProvider client={queryClient}>
                     <BrowserRouter>
-                        <StyleWrapper>
+                        <StyleProvider>
                             <Routes>
                                 {children}
                             </Routes>
-                        </StyleWrapper>
+                        </StyleProvider>
                     </BrowserRouter>
                 </QueryClientProvider>
 
@@ -51,11 +51,11 @@ const ProviderWrapper: React.FC<{ children: React.ReactNode[] | React.ReactNode 
 
 function App() {
   return (
-      <ProviderWrapper>
-            <Route path="/" element={<Home />}/>
-            <Route path="/favourites" element={<Favourites />}/>
-            <Route path="*" element={<NotFound />}/>
-      </ProviderWrapper>      
+    <ProviderWrapper>
+        <Route path="/" element={<Home />}/>
+        <Route path="/favourites" element={<Favourites />}/>
+        <Route path="*" element={<NotFound />}/>
+    </ProviderWrapper>      
   )
 }
 
