@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { DefaultHookInitValType } from './hooks.types'
-import { FetchWordsDataResultInterface } from './utils.types'
+import { FetchWordsDataResultInterface, PartOfSpeechType } from './utils.types'
 
 export interface DefaultPropsInterface {
     className?: string
@@ -20,7 +20,7 @@ export interface InputProps extends DefaultPropsInterface {
     inputType: string,
     inputName: string,
     validation: { required: boolean, maxLength: number, minLength: number }
-    formInputHook: { value: DefaultHookInitValType, onChange: (e: React.FormEvent<HTMLInputElement>) => void }
+    formInputHook: { value: DefaultHookInitValType, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }
 }
 
 export interface WordListPropsInterface extends DefaultPropsInterface {
@@ -36,4 +36,9 @@ export interface WordPropsInterface extends DefaultPropsInterface {
 export interface WordDefenitionPropsInterface extends DefaultPropsInterface {
     partOfSpeech: string, 
     definition: string
+}
+
+export interface SearchFiltersPropsInterface extends DefaultPropsInterface {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    value: PartOfSpeechType | null
 }

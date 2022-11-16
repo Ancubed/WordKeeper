@@ -11,14 +11,14 @@ const options = {
     }
 };
 
-export const fetchWordsData = async ({ pattern, limit = 10 } : FetchWordsDataParamsInterface): Promise<FetchWordsDataResultInterface> => {    
-    const response = await axios.get(encodeURI(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=^${trimAllString(pattern)}&limit=${limit}&hasDetails=definitions`), options);
+export const fetchWordsData = async ({ pattern, partOfSpeech, limit = 5 } : FetchWordsDataParamsInterface): Promise<FetchWordsDataResultInterface> => {    
+    const response = await axios.get(encodeURI(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=^${trimAllString(pattern)}&limit=${limit}&hasDetails=definitions${partOfSpeech ? `&partOfSpeech=${partOfSpeech}` : ''}`), options);
     
     return response.data.results
 }
 
 export const fetchOneWordData = async ({ word } : FetchOneWordDataParamsInterface): Promise<FetchOneWordDataResultInterface> => {    
     const response = await axios.get(encodeURI(`https://wordsapiv1.p.rapidapi.com/words/${trimAllString(word)}`), options);
-    console.log(true)
+
     return response.data
 }

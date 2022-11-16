@@ -1,8 +1,11 @@
 import * as React from 'react'
 
+export type PartOfSpeechType = 'noun' | 'adjective' | 'verb'
+
 export interface FetchWordsDataParamsInterface {
     pattern: string,
     limit?: number
+    partOfSpeech?: PartOfSpeechType
 }
 
 export interface FetchWordsDataResultInterface {
