@@ -35,7 +35,7 @@ export interface FavouritesWordListPropsInterface extends DefaultPropsInterface 
 }
 
 export interface WordPropsInterface extends DefaultPropsInterface {
-    key: React.Key,
+    key?: React.Key,
     word: string,
     propsWordSearchData?: FetchOneWordDataResultInterface
 }
