@@ -18,7 +18,7 @@ const Word: React.FC<WordPropsInterface> = ({ className, word, propsWordSearchDa
   const isWordInFavourites = useSelector((state: StoreState) => state.search.words.findIndex(wrd => wrd.word === word)) !== -1
   const [isWordClicked, setIsWordClicked] = useState(false)
 
-  // Если слово передано ка кпропс, то не нужно делать запрос
+  // Если слово передано как пропс, то не нужно делать запрос
   const isWordStoraged = propsWordSearchData !== undefined
   const queryResult = useQuery(word, () => fetchOneWordData({ word }), { enabled: !isWordStoraged })
   let wordData = isWordStoraged ? propsWordSearchData : queryResult.data
@@ -38,7 +38,7 @@ const Word: React.FC<WordPropsInterface> = ({ className, word, propsWordSearchDa
   }
 
   return (
-    <div className={classname("flex justify-between w-full p-4 bg-blue-100 mb-2 rounded", className)} >
+    <div className={classname("flex justify-between w-full p-4 bg-blue-100 mb-2 rounded", className)}>
         <div className="w-11/12">
           <div className="">
             <div onClick={handleWordClick} className="cursor-pointer">
