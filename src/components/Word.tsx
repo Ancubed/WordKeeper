@@ -92,7 +92,7 @@ const Word: React.FC<WordPropsInterface> = ({
                         <div>
                             {wordData.results &&
                                 wordData.results
-                                    .slice(1, wordData.results.length - 1)
+                                    .slice(1, wordData.results.length)
                                     .map((rs: any, idx: number) => (
                                         <WordDefenition
                                             partOfSpeech={rs.partOfSpeech}
