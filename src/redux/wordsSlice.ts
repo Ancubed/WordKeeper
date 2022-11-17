@@ -24,7 +24,7 @@ const wordsSlice = createSlice({
         },
         remove(state, action: PayloadAction<string>) {
             state.words = state.words.filter(
-                (wrd) => wrd.word.toLowerCase() !== action.payload
+                (wrd) => wrd.word !== action.payload
             )
         },
         reorder(state, action: PayloadAction<ReorderReducerPayloadInterface>) {

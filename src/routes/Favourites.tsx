@@ -37,12 +37,14 @@ const sortFunction = (
         return selector.filter((wsd) => {
             if (
                 (filter &&
-                    wsd.word.startsWith(text) &&
+                    (wsd.word.startsWith(text) || 
+                    wsd.word.startsWith(text.toLowerCase())) &&
                     wsd.results &&
                     wsd.results.findIndex(
                         (res) => res.partOfSpeech === filter
                     ) !== -1) ||
-                (!filter && wsd.word.startsWith(text))
+                (!filter && (wsd.word.startsWith(text) || 
+                wsd.word.startsWith(text.toLowerCase())))
             )
                 return true
             return false
