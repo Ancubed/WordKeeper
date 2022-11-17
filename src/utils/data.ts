@@ -24,7 +24,7 @@ export const fetchWordsData = async ({
     const response = await axios.get(
         encodeURI(
             `https://wordsapiv1.p.rapidapi.com/words/?letterPattern=^${trimAllString(
-                pattern
+                pattern.toLowerCase()
             )}&limit=${limit}&hasDetails=definitions${
                 partOfSpeech ? `&partOfSpeech=${partOfSpeech}` : ''
             }`
@@ -40,7 +40,7 @@ export const fetchOneWordData = async ({
 }: FetchOneWordDataParamsInterface): Promise<FetchOneWordDataResultInterface> => {
     const response = await axios.get(
         encodeURI(
-            `https://wordsapiv1.p.rapidapi.com/words/${trimAllString(word)}`
+            `https://wordsapiv1.p.rapidapi.com/words/${trimAllString(word.toLowerCase())}`
         ),
         options
     )
