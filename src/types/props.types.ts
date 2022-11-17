@@ -31,13 +31,15 @@ export interface SearchWordListPropsInterface extends DefaultPropsInterface {
 }
 
 export interface FavouritesWordListPropsInterface extends DefaultPropsInterface {
-    wordsSearchData: FetchOneWordDataResultInterface[]
+    wordsSearchData: FetchOneWordDataResultInterface[],
+    dragAndDropEnabled: boolean
 }
 
 export interface WordPropsInterface extends DefaultPropsInterface {
     key?: React.Key,
     word: string,
-    propsWordSearchData?: FetchOneWordDataResultInterface
+    propsWordSearchData?: FetchOneWordDataResultInterface,
+    isDraggable?: boolean
 }
 
 export interface WordDefenitionPropsInterface extends DefaultPropsInterface {

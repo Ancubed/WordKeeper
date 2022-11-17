@@ -13,7 +13,9 @@ import { fetchOneWordData } from '../utils/data'
 import { addWord, removeWord } from '../utils/storage'
 import { add, remove } from '../redux/wordsSlice'
 
-const Word: React.FC<WordPropsInterface> = ({ className, word, propsWordSearchData }: WordPropsInterface) => {
+import { ReactComponent as DraggableIcon } from '../assets/draggable.svg'
+
+const Word: React.FC<WordPropsInterface> = ({ className, word, propsWordSearchData, isDraggable = false }: WordPropsInterface) => {
   const dispatch = useDispatch()
   const isWordInFavourites = useSelector((state: StoreState) => state.search.words.findIndex(wrd => wrd.word === word)) !== -1
   const [isWordClicked, setIsWordClicked] = useState(false)
@@ -22,7 +24,7 @@ const Word: React.FC<WordPropsInterface> = ({ className, word, propsWordSearchDa
   const isWordStoraged = propsWordSearchData !== undefined
   const queryResult = useQuery(word, () => fetchOneWordData({ word }), { enabled: !isWordStoraged })
   let wordData = isWordStoraged ? propsWordSearchData : queryResult.data
-
+  
   const handleWordClick = () => setIsWordClicked(!isWordClicked)
 
   const addRemoveFavourite = () => {
@@ -38,34 +40,38 @@ const Word: React.FC<WordPropsInterface> = ({ className, word, propsWordSearchDa
   }
 
   return (
-    <div className={classname("flex justify-between w-full p-4 bg-blue-100 mb-2 rounded", className)}>
-        <div className="w-11/12">
-          <div className="">
-            <div onClick={handleWordClick} className="cursor-pointer">
-              <span className="text-xl">{word}</span>
-              {isWordClicked && wordData && Object.keys(wordData).length > 0 && wordData.pronunciation
-              && 
-                <span className="italic text-base ml-2">({typeof wordData.pronunciation === 'object' ? wordData.pronunciation.all : wordData.pronunciation})</span>
-              }
-            </div>
-            {wordData && Object.keys(wordData).length > 0 && wordData.results
-            &&
-              <WordDefenition 
-                partOfSpeech={wordData.results[0].partOfSpeech} 
-                definition={wordData.results[0].definition} 
-                className={isWordClicked ? '' : 'truncate'}/>
-            }    
+    <div className={classname("flex justify-between w-full p-4 bg-blue-100 mb-4 rounded", className)}>
+      {isDraggable
+        &&
+        <DraggableIcon className="flex items-center w-6 cursor-pointer"/>
+      }
+      <div className="w-10/12">
+        <div className="">
+          <div onClick={handleWordClick} className="cursor-pointer">
+            <span className="text-xl">{word}</span>
+            {isWordClicked && wordData && Object.keys(wordData).length > 0 && wordData.pronunciation
+              &&
+              <span className="italic text-base ml-2">({typeof wordData.pronunciation === 'object' ? wordData.pronunciation.all : wordData.pronunciation})</span>
+            }
           </div>
-          {isWordClicked && wordData && Object.keys(wordData).length > 1
-          &&
-            <div>
-              {wordData.results && wordData.results.slice(1, wordData.results.length - 1).map((rs: any, idx: number) => 
-                <WordDefenition partOfSpeech={rs.partOfSpeech} definition={rs.definition} key={idx}/>)
-              }
-            </div>
+          {wordData && Object.keys(wordData).length > 0 && wordData.results && wordData.results.length > 0
+            &&
+            <WordDefenition
+              partOfSpeech={wordData.results[0].partOfSpeech}
+              definition={wordData.results[0].definition}
+              className={isWordClicked ? '' : 'truncate'} />
           }
         </div>
-        <Star isFilled={isWordInFavourites} className="cursor-pointer" onClick={addRemoveFavourite}/>
+        {isWordClicked && wordData && Object.keys(wordData).length > 1
+          &&
+          <div>
+            {wordData.results && wordData.results.slice(1, wordData.results.length - 1).map((rs: any, idx: number) =>
+              <WordDefenition partOfSpeech={rs.partOfSpeech} definition={rs.definition} key={idx} />)
+            }
+          </div>
+        }
+      </div>
+      <Star isFilled={isWordInFavourites} className="cursor-pointer" onClick={addRemoveFavourite} />
     </div>
   );
 }

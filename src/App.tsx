@@ -33,19 +33,17 @@ const StyleProvider: React.FC<{ children: React.ReactNode[] | React.ReactNode }>
 
 const ProviderWrapper: React.FC<{ children: React.ReactNode[] | React.ReactNode }> = ({ children } : { children: React.ReactNode[] | React.ReactNode }) => {
     return (
-        <React.StrictMode>
-            <Provider store={store}>
-                <QueryClientProvider client={queryClient}>
-                    <BrowserRouter>
-                        <StyleProvider>
-                            <Routes>
-                                {children}
-                            </Routes>
-                        </StyleProvider>
-                    </BrowserRouter>
-                </QueryClientProvider>
-            </Provider>
-        </React.StrictMode>
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                    <StyleProvider>
+                        <Routes>
+                            {children}
+                        </Routes>
+                    </StyleProvider>
+                </BrowserRouter>
+            </QueryClientProvider>
+        </Provider>
     )
 }
 

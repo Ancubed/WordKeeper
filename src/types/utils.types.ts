@@ -2,7 +2,7 @@ import * as React from 'react'
 
 export type PartOfSpeechType = 'noun' | 'adjective' | 'verb'
 
-export type SortType = "filter" | "alphabet"
+export type SortType = "filter" | "alphabet" | "custom"
 
 export interface FetchWordsDataParamsInterface {
     pattern: string,

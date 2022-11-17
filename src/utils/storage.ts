@@ -61,3 +61,12 @@ export const getAllWords = (): FetchOneWordDataResultInterface[] => {
     }
     return []
 }
+
+export const setAllWords = (words: FetchOneWordDataResultInterface[]) => {
+    try {
+        localStorage.setItem('words', JSON.stringify(words))
+    } catch (err) {
+        handleError(err)
+    }
+    return []
+}
