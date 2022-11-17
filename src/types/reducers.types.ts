@@ -1,17 +1,17 @@
-import * as React from 'react'
+import * as React from "react";
 
-import { FetchOneWordDataResultInterface } from './utils.types'
+import { FetchOneWordDataResultInterface } from "./utils.types";
 
 type SorurceOrDestinationType = {
-    droppableId: string,
-    index: number
-}
+  droppableId: string;
+  index: number;
+};
 
 export interface WordReducerStateInterface {
-    words: FetchOneWordDataResultInterface[]
+  words: FetchOneWordDataResultInterface[];
 }
 
 export interface ReorderReducerPayloadInterface {
-    source: SorurceOrDestinationType,
-    destination: SorurceOrDestinationType
+  source: SorurceOrDestinationType;
+  destination: SorurceOrDestinationType;
 }

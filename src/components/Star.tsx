@@ -1,14 +1,18 @@
-import classname from 'classnames'
-import React from 'react'
+import classname from "classnames";
+import React from "react";
 
-import { StarPropsInterface } from '../types/props.types'
+import { StarPropsInterface } from "../types/props.types";
 
-const Star: React.FC<StarPropsInterface> = ({ className, isFilled, onClick }: StarPropsInterface) => {
+const Star: React.FC<StarPropsInterface> = ({
+  className,
+  isFilled,
+  onClick,
+}: StarPropsInterface) => {
   return (
     <span className={classname("text-xl", className)} onClick={onClick}>
-        {isFilled ? '★' : '✩'}
+      {isFilled ? "★" : "✩"}
     </span>
   );
-}
+};
 
-export default Star
+export default Star;
