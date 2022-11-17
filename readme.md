@@ -5,3 +5,5 @@
 React-ts-vite шаблон, для запуска необходимо в .env указать ключ от [Wordsapi](https://www.ordsapi.com/)
 
 Так же есть ветка no-prettier (код до прогона)
+
+Деплой в caprover - `tar -cvf ./deploy.tar --exclude='*.map' ./captain-definition ./dist/*`
