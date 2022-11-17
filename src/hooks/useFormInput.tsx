@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-import { DefaultHookInitValType } from "../types/hooks.types";
+import { DefaultHookInitValType } from '../types/hooks.types'
 
 const useFormInput = (initVal: DefaultHookInitValType) => {
-  const [value, setValue] = useState(initVal);
+    const [value, setValue] = useState(initVal)
 
-  const onChange = React.useCallback(
-    (e: React.FormEvent<HTMLInputElement>) => {
-      setValue(e.currentTarget.value);
-    },
-    [value]
-  );
+    const onChange = React.useCallback(
+        (e: React.FormEvent<HTMLInputElement>) => {
+            setValue(e.currentTarget.value)
+        },
+        [value]
+    )
 
-  return { value, onChange };
-};
+    return { value, onChange }
+}
 
-export default useFormInput;
+export default useFormInput
