@@ -9,7 +9,7 @@ const getWords = (): FetchOneWordDataResultInterface[] => {
     return JSON.parse(wordsString)
 }
 
-const handleError = (err: Error) => {
+const handleError = (err: unknown) => {
     console.log(err)
 }
 
