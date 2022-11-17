@@ -6,4 +6,4 @@ React-ts-vite шаблон, для запуска необходимо в .env �
 
 Так же есть ветка no-prettier (код до прогона)
 
-Деплой в caprover - `tar -cvf ./deploy.tar --exclude='*.map' ./captain-definition ./dist/*`
+Деплой в caprover - `tar -cvf ./deploy.tar --exclude='*.map' ./Dockerfile ./captain-definition ./dist/*`
